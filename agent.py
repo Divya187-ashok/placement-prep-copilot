@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 import os
 from typing import TypedDict, List
 from sentence_transformers import SentenceTransformer
@@ -73,6 +74,10 @@ collection.add(
     ids=[doc["id"] for doc in documents],
     metadatas=[{"topic": doc["topic"]} for doc in documents]
 )
+
+load_dotenv()
+print(os.getenv("GROQ_API_KEY")) 
+
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
     temperature=0
